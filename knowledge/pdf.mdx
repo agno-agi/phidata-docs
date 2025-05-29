@@ -36,10 +36,10 @@ Then use the `knowledge_base` with an Agent:
 
 ```python agent.py
 from phi.agent import Agent
-from knowledge_base import knowledge_base
+from knowledge_base import pdf_knowledge_base
 
 agent = Agent(
-    knowledge=knowledge_base,
+    knowledge=pdf_knowledge_base,
     search_knowledge=True,
 )
 agent.knowledge.load(recreate=False)

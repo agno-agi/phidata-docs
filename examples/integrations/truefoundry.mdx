@@ -1,0 +1,98 @@
+---
+title: "TrueFoundry AI Gateway"
+---
+
+## TrueFoundry AI Gateway
+
+TrueFoundry provides an [enterprise-ready AI Gateway](https://www.truefoundry.com/ai-gateway) which can integrate with applications like Phidata and provides governance and observability for your AI Applications. TrueFoundry AI Gateway serves as a unified interface for LLM access, providing:
+
+- **Unified API Access**: Connect to 250+ LLMs (OpenAI, Claude, Gemini, Groq, Mistral) through one API
+- **Low Latency**: Sub-3ms internal latency with intelligent routing and load balancing
+- **Enterprise Security**: SOC 2, HIPAA, GDPR compliance with RBAC and audit logging
+- **Quota and Cost Management**: Token-based quotas, rate limiting, and comprehensive usage tracking
+- **Observability**: Full request/response logging, metrics, and traces with customizable retention
+
+## Prerequisites
+
+Before integrating Phidata with TrueFoundry, ensure you have:
+
+1. **TrueFoundry Account**: Create a [Truefoundry account](https://www.truefoundry.com/register) and follow our [Gateway Quick Start](https://docs.truefoundry.com/gateway/quick-start)
+2. **Phidata Installation**: Install Phidata using pip: `pip install -U phidata`
+
+## Setup Process
+
+### 1. Configure Phidata with TrueFoundry
+
+You will get your 'truefoundry-api-key', 'truefoundry-gateway-url' and model name directly from the unified code snippet
+
+<Frame>
+  <img src="/images/new-code-snippet.png" />
+</Frame>
+
+### 2. Basic Setup with Phidata
+
+Connect to TrueFoundry by configuring the OpenAI LLM in Phidata with your TrueFoundry gateway:
+
+```python
+from phi.agent import Agent
+from phi.llm.openai import OpenAIChat
+
+llm = OpenAIChat(
+    base_url="your-truefoundry-base-url",
+    api_key="your-truefoundry-api-key",
+    model='openai-main/gpt-4o'  # Use any model from any provider
+)
+
+agent = Agent(
+    llm=llm,
+    description="You help people with their questions.",
+    instructions=["tell fun and amazing facts about the topic"],
+)
+
+# Print a response to the client
+agent.print_response("tell something about sabertooth tiger.", markdown=True)
+```
+
+Replace:
+- `your-truefoundry-api-key` with your actual TrueFoundry API key
+- `your-truefoundry-base-url` with your TrueFoundry Gateway URL
+- Use your desired model in the format `provider-main/model-name`
+
+### 3. Environment Variables Configuration
+
+For persistent configuration across your Phidata applications, set these environment variables:
+
+```bash
+export OPENAI_API_KEY="your-truefoundry-api-key"
+export OPENAI_BASE_URL="your-truefoundry-base-url"
+```
+
+## Usage Examples
+
+### Basic Agent Example
+
+When you run the agent example above, you'll get a response like this:
+
+<Frame caption="Response Image">
+  <img
+    src="/images/phidata-response.png"
+    alt="Example response from Phidata agent showing information about sabertooth tigers"
+  />
+</Frame>
+
+### Observability and Governance
+
+Monitor your Phidata applications through TrueFoundry's metrics tab:
+
+<Frame>
+  <img src="/images/gateway-metrics.png" alt="TrueFoundry metrics dashboard showing performance analytics" />
+</Frame>
+
+With TrueFoundry's AI gateway, you can monitor and analyze:
+
+- **Performance Metrics**: Track key latency metrics like Request Latency, Time to First Token (TTFS), and Inter-Token Latency (ITL) with P99, P90, and P50 percentiles
+- **Cost and Token Usage**: Gain visibility into your application's costs with detailed breakdowns of input/output tokens and the associated expenses for each model
+- **Usage Patterns**: Understand how your application is being used with detailed analytics on user activity, model distribution, and team-based usage
+- **Agent Performance**: Monitor individual agent performance and tool usage patterns
+- **Rate limit and Load balancing**: Set up rate limiting, load balancing and fallback for your models
+

@@ -347,7 +347,8 @@
             "examples/integrations/pinecone",
             "examples/integrations/qdrant",
             "examples/integrations/chroma",
-            "examples/integrations/portkey"
+            "examples/integrations/portkey",
+            "examples/integrations/truefoundry"
           ]
         },
         {

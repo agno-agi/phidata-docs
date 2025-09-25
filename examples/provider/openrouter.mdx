@@ -12,7 +12,6 @@ from phi.model.openrouter import OpenRouter
 
 agent = Agent(
     model=OpenRouter(id="gpt-4o"),
-    tools=[YFinanceTools(stock_price=True)],
     show_tool_calls=True,
     markdown=True,
 )

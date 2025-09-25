@@ -34,6 +34,7 @@ python reasoning_agent.py
 Reasoning is currently limited to OpenAI models and will break about 20% of the time. **It is not a replacement for o1.**
 
 It is an experiment fueled by curiosity, combining COT and tool use. Set your expectations very low for this initial release. For example: It will not be able to count ‘r’s in ‘strawberry’.
+
 </Warning>
 
 ## How to use reasoning
@@ -63,11 +64,9 @@ Reasoning with tools is currently limited to OpenAI models and will break about 
 ```python finance_reasoning.py
 from phi.agent import Agent
 from phi.model.openai import OpenAIChat
-from phi.tools.yfinance import YFinanceTools
 
 reasoning_agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
     instructions=["Use tables to show data"],
     show_tool_calls=True,
     markdown=True,
@@ -79,7 +78,7 @@ reasoning_agent.print_response("Write a report comparing NVDA to TSLA", stream=T
 Run the script to see the output.
 
 ```bash
-pip install -U phidata openai yfinance
+pip install -U phidata openai
 
 export OPENAI_API_KEY=***
 
@@ -199,7 +198,6 @@ python ethical_dilemma.py
 ```
 
 ### Planning an itinerary
-
 
 ```python planning_itinerary.py
 from phi.agent import Agent

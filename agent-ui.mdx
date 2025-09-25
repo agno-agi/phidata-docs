@@ -7,12 +7,13 @@ description: Phidata provides a beautiful Agent UI for interacting with your age
   <img
     height="200"
     src="/images/agent_playground.png"
-    style={{ borderRadius: '8px' }}
+    style={{ borderRadius: "8px" }}
   />
 </Frame>
 
 <Note>
-No data is sent to phidata, all agent sessions are stored locally in a sqlite database.
+  No data is sent to phidata, all agent sessions are stored locally in a sqlite
+  database.
 </Note>
 
 Let's take it for a spin, create a file `playground.py`
@@ -22,7 +23,6 @@ from phi.agent import Agent
 from phi.model.openai import OpenAIChat
 from phi.storage.agent.sqlite import SqlAgentStorage
 from phi.tools.duckduckgo import DuckDuckGo
-from phi.tools.yfinance import YFinanceTools
 from phi.playground import Playground, serve_playground_app
 
 web_agent = Agent(
@@ -38,7 +38,6 @@ web_agent = Agent(
 finance_agent = Agent(
     name="Finance Agent",
     model=OpenAIChat(id="gpt-4o"),
-    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
     instructions=["Use tables to display data"],
     storage=SqlAgentStorage(table_name="finance_agent", db_file="agents.db"),
     add_history_to_messages=True,
@@ -51,7 +50,10 @@ if __name__ == "__main__":
     serve_playground_app("playground:app", reload=True)
 ```
 
-<Tip>Make sure the `serve_playground_app()` points to the file that contains your `Playground` app.</Tip>
+<Tip>
+  Make sure the `serve_playground_app()` points to the file that contains your
+  `Playground` app.
+</Tip>
 
 <Snippet file="authenticate-with-phidata.mdx" />
 
@@ -85,5 +87,5 @@ The Agent Playground includes a few demo agents that you can test with. If you h
 <img
   height="200"
   src="/images/demo_agents.png"
-  style={{ borderRadius: '8px' }}
+  style={{ borderRadius: "8px" }}
 />

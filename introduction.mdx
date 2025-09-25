@@ -4,10 +4,9 @@ description: "**Build agents and workflows to automate intelligent work.**"
 ---
 
 <Info>
-Phidata is now Agno! 
-We've moved! Check out our new home at [Agno AGI](https://github.com/agno-agi/agno)
+  Phidata is now Agno! We've moved! Check out our new home at [Agno
+  AGI](https://github.com/agno-agi/agno)
 </Info>
-
 
 ## What is Phidata?
 
@@ -105,6 +104,7 @@ web_agent.print_response("Tell me about OpenAI Sora?", stream=True)
     <Tip>
     You can get an API key from [here](https://platform.openai.com/account/api-keys).
     </Tip>
+
   </Step>
   <Step title="Run the agent">
 
@@ -127,12 +127,10 @@ For example, you can create a finance agent with tools to query financial data.
     ```python finance_agent.py
     from phi.agent import Agent
     from phi.model.openai import OpenAIChat
-    from phi.tools.yfinance import YFinanceTools
 
     finance_agent = Agent(
         name="Finance Agent",
         model=OpenAIChat(id="gpt-4o"),
-        tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
         instructions=["Use tables to display data"],
         show_tool_calls=True,
         markdown=True,
@@ -146,7 +144,7 @@ For example, you can create a finance agent with tools to query financial data.
     Install libraries
 
     ```shell
-    pip install yfinance
+    pip install openai
     ```
 
     Run the agent
@@ -195,7 +193,6 @@ For example, you can create an image agent that can understand images and make t
   </Step>
 </Steps>
 
-
 ## Multi-Agent orchestration
 
 Phidata agents can work together as a team to achieve complex tasks.
@@ -207,7 +204,6 @@ Phidata agents can work together as a team to achieve complex tasks.
     from phi.agent import Agent
     from phi.model.openai import OpenAIChat
     from phi.tools.duckduckgo import DuckDuckGo
-    from phi.tools.yfinance import YFinanceTools
 
     web_agent = Agent(
         name="Web Agent",
@@ -223,7 +219,6 @@ Phidata agents can work together as a team to achieve complex tasks.
         name="Finance Agent",
         role="Get financial data",
         model=OpenAIChat(id="gpt-4o"),
-        tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)],
         instructions=["Use tables to display data"],
         show_tool_calls=True,
         markdown=True,

@@ -10,11 +10,9 @@ title: Fireworks
 
 from phi.agent import Agent
 from phi.model.fireworks import Fireworks
-from phi.tools.yfinance import YFinanceTools
 
 agent = Agent(
     model=Fireworks(id="accounts/fireworks/models/firefunction-v2"),
-    tools=[YFinanceTools(stock_price=True)],
     show_tool_calls=True,
     markdown=True,
 )

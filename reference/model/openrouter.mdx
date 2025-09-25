@@ -11,11 +11,9 @@ sidebarTitle: OpenRouter
 
 from phi.agent import Agent
 from phi.model.openrouter import OpenRouter
-from phi.tools.yfinance import YFinanceTools
 
 agent = Agent(
 model=OpenRouter(id="gpt-4o"),
-tools=[YFinanceTools(stock_price=True)],
 show_tool_calls=True,
 markdown=True,
 )

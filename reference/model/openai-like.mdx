@@ -9,11 +9,9 @@ title: OpenAILike
 ```python agent.py
 from phi.agent import Agent
 from phi.model.openai import OpenAIChat
-from phi.tools.yfinance import YFinanceTools
 
 agent = Agent(
     model=OpenAIChat(id="gpt-4o"),
-    tools=[YFinanceTools(stock_price=True)],
     show_tool_calls=True,
     markdown=True,
 )

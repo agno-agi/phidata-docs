@@ -61,6 +61,7 @@ description: "**Agents are autonomous programs that complete tasks using languag
     <Tip>
     You can get an API key from [here](https://platform.openai.com/account/api-keys).
     </Tip>
+
   </Step>
 </Steps>
 
@@ -115,12 +116,10 @@ Lets create another agent that can query financial data, create a file `finance_
     ```python finance_agent.py
     from phi.agent import Agent
     from phi.model.openai import OpenAIChat
-    from phi.tools.yfinance import YFinanceTools
 
     finance_agent = Agent(
         name="Finance Agent",
         model=OpenAIChat(id="gpt-4o"),
-        tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True, company_news=True)],
         instructions=["Use tables to display data"],
         show_tool_calls=True,
         markdown=True,
@@ -134,7 +133,7 @@ Lets create another agent that can query financial data, create a file `finance_
     Install libraries
 
     ```shell
-    pip install yfinance
+    pip install openai
     ```
 
     Run the agent
@@ -157,7 +156,6 @@ A team of agents can work together to solve complex problems, create a file `age
     from phi.agent import Agent
     from phi.model.openai import OpenAIChat
     from phi.tools.duckduckgo import DuckDuckGo
-    from phi.tools.yfinance import YFinanceTools
 
     web_agent = Agent(
         name="Web Agent",
@@ -173,7 +171,6 @@ A team of agents can work together to solve complex problems, create a file `age
         name="Finance Agent",
         role="Get financial data",
         model=OpenAIChat(id="gpt-4o"),
-        tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)],
         instructions=["Use tables to display data"],
         show_tool_calls=True,
         markdown=True,
@@ -202,9 +199,9 @@ A team of agents can work together to solve complex problems, create a file `age
 </Steps>
 
 <Tip>
-Agent teams are non-deterministic and are not recommended for production systems, we recommend using [workflows](/workflows) instead.
+  Agent teams are non-deterministic and are not recommended for production
+  systems, we recommend using [workflows](/workflows) instead.
 </Tip>
-
 
 ## Reasoning Agent
 
@@ -239,7 +236,10 @@ Reasoning is an experimental feature that helps agents work through a problem st
 </Steps>
 
 <Warning>
-Reasoning is an experimental feature and will break ~20% of the time. **It is not a replacement for o1.** It is an experiment that combines COT and tool use. Set your expectations very low for this initial release. For example: It will not be able to count ‘r’s in ‘strawberry’.
+  Reasoning is an experimental feature and will break ~20% of the time. **It is
+  not a replacement for o1.** It is an experiment that combines COT and tool
+  use. Set your expectations very low for this initial release. For example: It
+  will not be able to count ‘r’s in ‘strawberry’.
 </Warning>
 
 ## RAG Agent
@@ -355,11 +355,22 @@ Use structured outputs to enforce the structure of the output from an agent and 
 Start building your own agents or use a template to build a full-stack agentic system.
 
 <CardGroup cols={1}>
-  <Card title="Agents" icon="user-astronaut" iconType="duotone" href="/agents/introduction">
+  <Card
+    title="Agents"
+    icon="user-astronaut"
+    iconType="duotone"
+    href="/agents/introduction"
+  >
     Build your own agents and customize them to your use case.
   </Card>
-  <Card title="Templates" icon="rocket-launch" iconType="duotone" href="/templates/introduction">
-    Build full-stack agentic systems using pre-configured codebases, including infrastructure setup.
+  <Card
+    title="Templates"
+    icon="rocket-launch"
+    iconType="duotone"
+    href="/templates/introduction"
+  >
+    Build full-stack agentic systems using pre-configured codebases, including
+    infrastructure setup.
   </Card>
 </CardGroup>
 

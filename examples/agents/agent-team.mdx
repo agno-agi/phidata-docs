@@ -8,7 +8,6 @@ Create a file `agent_team.py` with the following code:
 from phi.agent import Agent
 from phi.model.openai import OpenAIChat
 from phi.tools.duckduckgo import DuckDuckGo
-from phi.tools.yfinance import YFinanceTools
 
 web_agent = Agent(
     name="Web Agent",
@@ -24,7 +23,7 @@ finance_agent = Agent(
     name="Finance Agent",
     role="Get financial data",
     model=OpenAIChat(id="gpt-4o"),
-    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)],
+    tools=[DuckDuckGo()],
     instructions=["Use tables to display data"],
     show_tool_calls=True,
     markdown=True,
@@ -45,16 +44,10 @@ agent_team.print_response("Summarize analyst recommendations and share the lates
 <Steps>
   <Snippet file="create-venv-step.mdx" />
 
-  <Step title="Install libraries">
-    ```bash
-    pip install openai yfinance duckduckgo-search phidata
-    ```
-  </Step>
+<Step title="Install libraries">
+  ```bash pip install openai duckduckgo-search phidata ```
+</Step>
 
-  <Step title="Run the agent">
-    ```bash
-    python agent_team.py
-    ```
-  </Step>
+<Step title="Run the agent">```bash python agent_team.py ```</Step>
 
 </Steps>

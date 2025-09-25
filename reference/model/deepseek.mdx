@@ -11,11 +11,9 @@ sidebarTitle: DeepSeek
 
 from phi.agent import Agent
 from phi.model.deepseek import DeepSeekChat
-from phi.tools.yfinance import YFinanceTools
 
 agent = Agent(
     model=DeepSeekChat(),
-    tools=[YFinanceTools(stock_price=True)],
     show_tool_calls=True,
     markdown=True,
 )
